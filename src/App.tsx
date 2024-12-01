@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-import { ProductList, ProductDetails } from "./components/index";
+import { ProductList, ProductDetails, Loading } from "./components/index";
 
 import { fetchProducts } from "../api/products";
 import { ProductTypes } from "./types/Product";
 
 const App: React.FC = () => {
   const [products, setProducts] = useState<ProductTypes[]>([]);
-  const [selectedProduct, setSelectedProduct] = useState<ProductTypes | null>(
-    null
-  );
+  const [selectedProduct, setSelectedProduct] = useState<ProductTypes | null>(null );
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -37,18 +35,18 @@ const App: React.FC = () => {
   }, []);
 
   if (products.length === 0) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (
-    <div style={{ display: "flex", padding: "20px" }}>
+    <>
       <ProductList
         products={products}
         selectedProduct={selectedProduct}
         onSelect={handleSelectProduct}
       />
       <ProductDetails product={selectedProduct} onNext={handleNextProduct} />
-    </div>
+    </>
   );
 };
 
