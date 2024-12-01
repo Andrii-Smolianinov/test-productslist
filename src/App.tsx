@@ -1,23 +1,26 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-import { ProductList, ProductDetails } from "./components";
+import { ProductList, ProductDetails } from "./components/index";
 
 import { fetchProducts } from "../api/products";
+import { ProductTypes } from "./types/Product";
 
-const App = () => {
-  const [products, setProducts] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+const App: React.FC = () => {
+  const [products, setProducts] = useState<ProductTypes[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<ProductTypes | null>(
+    null
+  );
 
   useEffect(() => {
     const loadProducts = async () => {
       try {
         const data = await fetchProducts();
         setProducts(data);
-        console.log(data);
       } catch (error) {
-        console.error("Failed to load products:", error);
+        console.error("Failed to load products", error);
       }
     };
+
     loadProducts();
   }, []);
 
@@ -29,7 +32,7 @@ const App = () => {
     setSelectedProduct(products[nextIndex]);
   }, [products, selectedProduct]);
 
-  const handleSelectProduct = useCallback((product) => {
+  const handleSelectProduct = useCallback((product: ProductTypes) => {
     setSelectedProduct(product);
   }, []);
 

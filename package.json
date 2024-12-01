@@ -1,7 +1,7 @@
 {
-  "name": "test-task-productslist",
+  "name": "test-productslist",
   "version": "0.1.0",
-  "private": true,
+  "private": true,  
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@rsbuild/core": "^1.1.6",
-    "@rsbuild/plugin-react": "^1.0.7"
+    "@rsbuild/plugin-react": "^1.0.7",
+    "typescript": "^5.7.2"
   }
 }

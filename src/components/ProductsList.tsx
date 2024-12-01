@@ -1,8 +1,15 @@
 import React from "react";
+import { ProductTypes } from "../types/Product";
 
-const ProductList = React.memo(
+interface ProductListProps {
+  products: ProductTypes[];
+  selectedProduct: ProductTypes | null;
+  onSelect: (product: ProductTypes) => void;
+}
+
+const ProductList: React.FC<ProductListProps> = React.memo(
   ({ products, selectedProduct, onSelect }) => {
-    const getBorderStyle = (isSelected) =>
+    const getBorderStyle = (isSelected: boolean): string =>
       isSelected ? "2px solid red" : "1px solid gray";
 
     return (
@@ -13,7 +20,7 @@ const ProductList = React.memo(
             style={{
               border: getBorderStyle(selectedProduct?.id === product.id),
               padding: "10px",
-              cursor: "pointer",
+              cursor: "pointer",              
             }}
             onClick={() => onSelect(product)}
           >
@@ -26,7 +33,6 @@ const ProductList = React.memo(
       </div>
     );
   },
-
   (prevProps, nextProps) =>
     prevProps.selectedProduct?.id === nextProps.selectedProduct?.id
 );
