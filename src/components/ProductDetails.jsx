@@ -1,21 +1,38 @@
 import React from "react";
 
 const ProductDetails = React.memo(({ product, onNext }) => (
-  <div style={{ flex: 1, padding: "10px", borderLeft: "1px solid gray" }}>
+  <div style={{ flex: 1, padding: "20px", justifyContent:"center", borderLeft: "1px solid gray" }}>
     {product ? (
-      <>
-        <h3>
-          #{product.id} {product.name}
-        </h3>        
-        <img
-          src={product.photo || "https://loremflickr.com/640/480/abstract"}
-          alt={product.name}
-          style={{ maxWidth: "100%" }}
-        />
-        <p>${product.price} USD</p>
-        <p>{product.description}</p>
-        <button onClick={onNext}>Next Product</button>
-      </>
+      <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            maxWidth: "70%",
+            padding: '0 30px',
+          }}
+        >
+          <h3>
+            #{product.id} {product.name}
+          </h3>
+          <h3>${product.price}USD</h3>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          <img
+            src={product.photo || "https://loremflickr.com/640/480/abstract"}
+            alt={product.name}
+            style={{ maxWidth: "35%", marginRight: "20px" }}
+          />
+          <p style={{ margin: "0px", maxWidth: "55%" }}>{product.description}</p>
+        </div>
+
+        <button onClick={onNext} style={{ marginTop: "30px", padding: "6px", width: "15%", cursor: "pointer" }}>Next Product</button>
+      </div>
     ) : (
       <p>Select a product to see details</p>
     )}

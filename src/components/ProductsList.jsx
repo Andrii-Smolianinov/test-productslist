@@ -1,8 +1,9 @@
 import React from "react";
 
-const ProductList = React.memo(({ products, selectedProduct, onSelect }) => {
+const ProductList = React.memo(
+  ({ products, selectedProduct, onSelect }) => {
     const getBorderStyle = (isSelected) =>
-      isSelected ? "2px solid red" : "1px solid gray";    
+      isSelected ? "2px solid red" : "1px solid gray";
 
     return (
       <div style={{ flex: 1 }}>
@@ -25,8 +26,9 @@ const ProductList = React.memo(({ products, selectedProduct, onSelect }) => {
       </div>
     );
   },
-    
-  (prevProps, nextProps) => prevProps.selectedProduct?.id === nextProps.selectedProduct?.id
+
+  (prevProps, nextProps) =>
+    prevProps.selectedProduct?.id === nextProps.selectedProduct?.id
 );
 
 export default ProductList;
